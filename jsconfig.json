@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "es6"
+  },
+  "include": [
+    "*.js",
+    "**/*.js",
+    "libraries/global.d.ts"
+  ]
+}
