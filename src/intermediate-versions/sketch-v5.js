@@ -1,9 +1,6 @@
 /** This version adds noise detail. */
 
-let zoomFactor = 100;
-let mapTypes;
-
-class MapType {
+class TerrainType {
   constructor(minHeight, maxHeight, minColor, maxColor, lerpAdjustment = 0) {
     this.minHeight = minHeight;
     this.maxHeight = maxHeight;
@@ -14,6 +11,13 @@ class MapType {
     this.lerpAdjustment = lerpAdjustment;
   }
 }
+
+let waterTerrain;
+let sandTerrain;
+let grassTerrain;
+let treesTerrain;
+
+let zoomFactor = 100;
 
 function setup() {
   createCanvas(400, 400);
@@ -27,16 +31,14 @@ function setup() {
   // Otherwise there is little deep water represented. This is the same for
   // setting the max for 'trees' to 0.75. Noise rarely goes above 0.8 and the 
   // tree colors look better assuming 0.75 as the max.
-  mapTypes = {
-    'water': new MapType(0.2, 0.4, color(30, 176, 251),
-      color(40, 255, 255)),
-    'sand': new MapType(0.4, 0.5, color(215, 192, 158),
-      color(255, 246, 193), 0.3),
-    'grass': new MapType(0.5, .7, color(2, 166, 155),
-      color(118, 239, 124)),
-    'trees': new MapType(0.7, .75, color(22, 181, 141),
-      color(10, 145, 113), -0.5),
-  };
+  waterTerrain =
+    new TerrainType(0.2, 0.4, color(30, 176, 251), color(40, 255, 255));
+  sandTerrain =
+    new TerrainType(0.4, 0.5, color(215, 192, 158), color(255, 246, 193), 0.3);
+  grassTerrain =
+    new TerrainType(0.5, 0.7, color(2, 166, 155), color(118, 239, 124));
+  treesTerrain =
+    new TerrainType(0.7, 0.75, color(22, 181, 141), color(10, 145, 113), -0.5);
 
   noLoop();
 }
@@ -52,16 +54,17 @@ function draw() {
       let terrainColor;
       // Compare the current noise value to each mapType max height and get the
       // terrain color accordingly. For easier extendability and less code 
-      // repetition, this could be done in a for loop instead but wanted to
-      // keep this example simpler.
-      if (noiseValue < mapTypes.water.maxHeight) {
-        terrainColor = getTerrainColor(noiseValue, mapTypes.water);
-      } else if (noiseValue < mapTypes.sand.maxHeight) {
-        terrainColor = getTerrainColor(noiseValue, mapTypes.sand);
-      } else if (noiseValue < mapTypes.grass.maxHeight) {
-        terrainColor = getTerrainColor(noiseValue, mapTypes.grass);
+      // repetition you could store the terrain types in an array and iterate
+      // over it with a for loop checking for maxHeight. For this example I just
+      // wanted to keep it simple and similar to previous versions.
+      if (noiseValue < waterTerrain.maxHeight) {
+        terrainColor = getTerrainColor(noiseValue, waterTerrain);
+      } else if (noiseValue < sandTerrain.maxHeight) {
+        terrainColor = getTerrainColor(noiseValue, sandTerrain);
+      } else if (noiseValue < grassTerrain.maxHeight) {
+        terrainColor = getTerrainColor(noiseValue, grassTerrain);
       } else {
-        terrainColor = getTerrainColor(noiseValue, mapTypes.trees);
+        terrainColor = getTerrainColor(noiseValue, treesTerrain);
       }
       set(x, y, terrainColor);
     }
