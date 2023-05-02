@@ -6,7 +6,7 @@ class TerrainType {
     this.maxHeight = maxHeight;
     this.minColor = minColor;
     this.maxColor = maxColor;
-    // An adjustment to the color lerp for the map type, this weights the color
+    // An adjustment to the color lerp for the map type, this weighs the color
     // towards the min or max color.
     this.lerpAdjustment = lerpAdjustment;
   }
@@ -31,11 +31,11 @@ function setup() {
   // multiple versions of it together.
   noiseDetail(9, 0.5);
 
-  // Perlin noise doesn't often go below 0.2, so set the min to so pretend the 
-  // min is 0.2 and not 0 so that the colors are more evenly distributed. 
-  // Otherwise there is little deep water represented. This is the same for
-  // setting the max for 'trees' to 0.75. Noise rarely goes above 0.8 and the 
-  // tree colors look better assuming 0.75 as the max.
+  // Perlin noise doesn't often go below 0.2, so pretend the min is 0.2 and not
+  // 0 so that the colors are more evenly distributed. Otherwise, there is 
+  // little deep water represented. This is the same for setting the max for 
+  // 'trees' to 0.75: noise rarely goes above 0.8 and the tree colors look 
+  // better assuming 0.75 as the max.
   waterTerrain =
     new TerrainType(0.2, 0.4, color(30, 176, 251), color(40, 255, 255));
   sandTerrain =
@@ -64,6 +64,7 @@ function draw() {
     mapChanged = true;
   }
 
+  // We only need to re-draw the canvas if the map has changed.
   if (!mapChanged) {
     return;
   }
