@@ -20,7 +20,7 @@ let treesTerrain;
 let zoomFactor = 100;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 600);
 
   // Perlin noise doesn't often go below 0.2, so pretend the min is 0.2 and not
   // 0 so that the colors are more evenly distributed. Otherwise, there is 

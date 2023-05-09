@@ -3,7 +3,8 @@
 let zoomFactor = 100;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 600);
+  background(200);
   noLoop();
 }
 
@@ -15,6 +16,7 @@ function draw() {
       // 100x on the noise map.
       const noiseValue = noise(x / zoomFactor, y / zoomFactor);
       set(x, y, color(255 * noiseValue));
+      //set(x, y, color(255 * Math.random()));
     }
   }
   updatePixels();

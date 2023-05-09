@@ -25,7 +25,7 @@ let yOffset = 10000;
 const cameraSpeed = 10;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 600);
 
   // Adjusts the level of detail created by the Perlin noise by layering
   // multiple versions of it together.

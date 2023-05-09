@@ -20,7 +20,7 @@ let treesTerrain;
 let zoomFactor = 100;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 600);
 
   // Adjusts the level of detail created by the Perlin noise by layering
   // multiple versions of it together.
