@@ -9,3 +9,5 @@ build up into the final result.
 To see the results of any of the intermediate versions, replace 
 `<script src="src/sketch.js"></script>` in `index.html` with the relevant file
 path.
+
+Tutorial video explaining how this works: [video](https://www.youtube.com/watch?v=ZoqPQ0sFo6A)
